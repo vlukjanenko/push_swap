@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:43:41 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/07 15:12:34 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/08 19:19:38 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <limits.h>
 # include <stdio.h> //for debugging
 
+typedef struct s_elm
+{
+    int number;
+    int index;
+} t_elm;
+
 typedef int	(*t_fun)(t_list **, t_list **);
 int			ft_read2a(t_list **a, int n, char **str);
 int			ft_read2c(t_list **c);
@@ -25,7 +31,7 @@ void		cleanarr(char ***array);
 int			ft_issort(t_list *a, t_list *b);
 int			ft_line_valid(char *line);
 int			ft_ra(t_list **a, t_list **b);
-int			t_rb(t_list **a, t_list **b);
+int			ft_rb(t_list **a, t_list **b);
 int			ft_rr(t_list **a, t_list **b);
 int			ft_rra(t_list **a, t_list **b);
 int			ft_rrb(t_list **a, t_list **b);
@@ -38,5 +44,6 @@ int			ft_rrr(t_list **a, t_list **b);
 int			ft_issort(t_list *a, t_list *b);
 t_fun		ft_get_f(char *str);
 int			ft_do_sort(t_list **a, t_list **b, t_list **c);
+int	ft_read_selm(t_list **a, int n, char **str);
 
 #endif

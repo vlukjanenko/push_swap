@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:33:36 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/07 15:05:16 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/10 14:06:19 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,14 @@ int	ft_ss(t_list **a, t_list **b)
 
 int	ft_pb(t_list **a, t_list **b)
 {
-	int		content;
+	void	*content;
 	t_list	*new;
 	t_list	*tmp;
 
 	if (*a)
 	{
-		content = *(int *)(*a)->content;
-		if (!(new = ft_lstnew(&content, 4)))
+		content = (*a)->content;
+		if (!(new = ft_lstnew(content, (*a)->content_size)))
 			return (1);
 		if (!*b)
 			*b = new;
@@ -72,14 +72,14 @@ int	ft_pb(t_list **a, t_list **b)
 
 int	ft_pa(t_list **a, t_list **b)
 {
-	int		content;
+	void	*content;
 	t_list	*new;
 	t_list	*tmp;
 
 	if (*b)
 	{
-		content = *(int *)(*b)->content;
-		if (!(new = ft_lstnew(&content, 4)))
+		content = (*b)->content;
+		if (!(new = ft_lstnew(content, (*b)->content_size)))
 			return (1);
 		if (!*a)
 			*a = new;

@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:41:07 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/07 15:30:19 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/10 11:43:26 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int		main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	ft_print_stack(a);
+	//ft_print_stack(a);
 	ft_do_sort(&a, &b, &c);
-	ft_print_stack(a);
+	//ft_print_stack(a);
 	ft_issort(a, b) ? write(1, "KO\n", 3) : write(1, "OK\n", 3);
 	a ? ft_lstdel(&a, del) : a;
 	c ? ft_lstdel(&c, del) : c;
