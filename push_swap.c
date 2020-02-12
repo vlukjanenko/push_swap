@@ -6,43 +6,11 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:42:33 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/10 14:09:57 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/11 16:02:42 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void ft_swap(int **array, int i, int j)
-{
-	int tmp;
-
-	tmp = (*array)[i];
-	(*array)[i] = (*array)[j];
-	(*array)[j] = tmp;
-}
-
-void ft_qsort(int **array, int low, int high)
-{
-int p;
-int i;
-
-if (low < high)
- 	{
-        p = high;
-		i = low;
-		while (i <= p)
-		{
-			while ((*array)[i] > (*array)[p])
-			{
-				ft_swap(array, i, --p);
-				ft_swap(array, p, p + 1);
-			}
-			i++;
-		}
-        ft_qsort(array, low, p - 1);
-        ft_qsort(array, p + 1, high);
-	}
-}
 
 int ft_get_number(t_list *a)
 {
@@ -87,7 +55,7 @@ int ft_fill_array(t_list *a, int **array)
 	ft_qsort(array, 0, i - 1);
 	return (0);
 }
-int ft_get3elm(t_list **a, int *first, int *second, int *bottom)
+int ft_get_max_of_3(t_list **a, int *first, int *second, int *bottom)
 {
 	t_list *head;
 
@@ -104,17 +72,27 @@ int ft_get3elm(t_list **a, int *first, int *second, int *bottom)
 		return (2);
 	return (3);
 }
-void ft_3sort(t_list **a, t_list **b, t_list **c)
+void ft_3_sort(t_list **a, t_list **b, t_list **c)
 {
 	int first;
 	int second;
 	int bottom;
+	int biggest;
 
-	while (ft_get3elm(a, &first, &second, &bottom) != 3)
+	biggest = ft_get_max_of_3(a, &first, &second, &bottom);
+	if (biggest == 1)
 	{
 		ft_ra(a, b);
 		ft_lstp2back(c, "ra", 3);
 	}
+	if (biggest == 2)
+	{
+		ft_sa(a, b);
+		ft_lstp2back(c, "sa", 3);
+		ft_ra(a, b);
+		ft_lstp2back(c, "ra", 3);
+	}
+	ft_get_max_of_3(a, &first, &second, &bottom);
 	if (first > second)
 		{
 			ft_sa(a, b);
@@ -125,7 +103,6 @@ int ft_issorta(t_list *a)
 {
 while (a && a->next)
 	{
-	//	printf("a = %d\n",((t_elm*)a->content)->index);
 		if (((t_elm*)a->content)->index > ((t_elm*)a->next->content)->index)
 			return (1);
 		a = a->next;
@@ -147,24 +124,21 @@ int ft_generator(t_list **a, t_list **b, t_list **c)
 		return (1);
 	ft_fill_array(*a, &array);
 	ft_fill_index(a, array, n);
-	ft_3sort(a, b, c);
 	sort = ft_issorta(*a);
-	 
-	 while ((sort = ft_issorta(*a)) || *b)
+	ft_3_sort(a, b, c); 
+	while ((sort = ft_issorta(*a)) || *b)
 	{
 		if (sort == 1)
 			{
 				ft_pb(a, b);
 				ft_lstp2back(c, "pb", 3);
-				ft_3sort(a, b, c);		
 			}
 			else 
 			{
 				ft_pa(a, b);
 				ft_lstp2back(c, "pa", 3);
-				ft_3sort(a, b, c);
 			}
-			
+	ft_3_sort(a, b, c);			
 	}
 	free(array);
 return (0);

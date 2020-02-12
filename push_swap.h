@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:43:41 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/08 19:19:38 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/11 15:52:55 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int			ft_rrr(t_list **a, t_list **b);
 int			ft_issort(t_list *a, t_list *b);
 t_fun		ft_get_f(char *str);
 int			ft_do_sort(t_list **a, t_list **b, t_list **c);
-int	ft_read_selm(t_list **a, int n, char **str);
+int         ft_read_selm(t_list **a, int n, char **str);
+void        ft_qsort(int **array, int low, int high);
 
 #endif
