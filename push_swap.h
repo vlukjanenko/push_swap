@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:43:41 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/11 15:52:55 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/19 12:52:35 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct s_elm
 {
     int number;
+    int order;
     int index;
 } t_elm;
 
