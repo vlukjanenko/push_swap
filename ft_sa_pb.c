@@ -6,13 +6,13 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:33:36 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/10 14:06:19 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/21 14:07:20 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_sa(t_list **a, t_list **b)
+int	ft_sa(t_list **a, t_list **b, int print)
 {
 	void *tmp;
 
@@ -23,10 +23,12 @@ int	ft_sa(t_list **a, t_list **b)
 		(*a)->content = (*a)->next->content;
 		(*a)->next->content = tmp;
 	}
+	if (print)
+		write(1, "sa\n", 3);
 	return (0);
 }
 
-int	ft_sb(t_list **a, t_list **b)
+int	ft_sb(t_list **a, t_list **b, int print)
 {
 	void *tmp;
 
@@ -37,58 +39,56 @@ int	ft_sb(t_list **a, t_list **b)
 		(*b)->content = (*b)->next->content;
 		(*b)->next->content = tmp;
 	}
+	if (print)
+		write(1, "sb\n", 3);
 	return (0);
 }
 
-int	ft_ss(t_list **a, t_list **b)
+int	ft_ss(t_list **a, t_list **b, int print)
 {
-	ft_sa(a, b);
-	ft_sb(a, b);
+	ft_sa(a, b, 0);
+	ft_sb(a, b, 0);
+	if (print)
+		write(1, "ss\n", 3);
 	return (0);
 }
 
-int	ft_pb(t_list **a, t_list **b)
+int	ft_pb(t_list **a, t_list **b, int print)
 {
-	void	*content;
-	t_list	*new;
-	t_list	*tmp;
+	t_list *tmp;
 
 	if (*a)
 	{
-		content = (*a)->content;
-		if (!(new = ft_lstnew(content, (*a)->content_size)))
-			return (1);
-		if (!*b)
-			*b = new;
-		else
-			ft_lstadd(b, new);
 		tmp = *a;
 		*a = (*a)->next;
-		free(tmp->content);
-		free(tmp);
+		tmp->next = *b;
+		if (*b)
+			*b = tmp;
+		else
+			tmp->next = 0;
+		*b = tmp;
 	}
+	if (print)
+		write(1, "pb\n", 3);
 	return (0);
 }
 
-int	ft_pa(t_list **a, t_list **b)
+int	ft_pa(t_list **a, t_list **b, int print)
 {
-	void	*content;
-	t_list	*new;
-	t_list	*tmp;
+	t_list *tmp;
 
 	if (*b)
 	{
-		content = (*b)->content;
-		if (!(new = ft_lstnew(content, (*b)->content_size)))
-			return (1);
-		if (!*a)
-			*a = new;
-		else
-			ft_lstadd(a, new);
 		tmp = *b;
 		*b = (*b)->next;
-		free(tmp->content);
-		free(tmp);
+		tmp->next = *a;
+		if (*a)
+			*a = tmp;
+		else
+			tmp->next = 0;
+		*a = tmp;
 	}
+	if (print)
+		write(1, "pa\n", 3);
 	return (0);
 }

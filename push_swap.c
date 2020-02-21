@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:42:33 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/21 13:03:12 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/21 21:52:47 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int ft_get_min_of_3(t_list **a, int *first, int *second, int *bottom)
 	return (3);
 }
 
-void ft_rotate(t_list **a, t_list **b, t_list **c)
+void ft_rotate(t_list **a, t_list **b)
 {
 	int first;
 	int second;
@@ -122,17 +122,11 @@ void ft_rotate(t_list **a, t_list **b, t_list **c)
 
 	smallest = ft_get_min_of_3(b, &first, &second, &bottom);
 	if (smallest == 1)
-	{
-		ft_rr(a, b);
-		ft_lstp2back(c, "rr", 3);
-	}
+		ft_rr(a, b, 1);
 	else
-	{
-		ft_ra(a, b);
-		ft_lstp2back(c, "ra", 3);
-	}
+		ft_ra(a, b, 1);
 }
-void ft_swap(t_list **a, t_list **b, t_list **c)
+void ft_swap(t_list **a, t_list **b)
 {
 	int first;
 	int second;
@@ -142,29 +136,12 @@ void ft_swap(t_list **a, t_list **b, t_list **c)
 	smallest = ft_get_min_of_3(b, &first, &second, &bottom);
 
 	if (second > first)
-	{
-		ft_ss(a, b);
-		ft_lstp2back(c, "ss", 3);
-	}
+		ft_ss(a, b, 1);
 	else
-	{
-		ft_sa(a, b);
-		ft_lstp2back(c, "sa", 3);
-	}
+		ft_sa(a, b, 1);
 }
 
-/* int ft_issorta(t_list *a)
-{
-	while (a && a->next)
-	{
-		if (((t_elm *)a->content)->index > ((t_elm *)a->next->content)->index)
-			return (1);
-		a = a->next;
-	}
-	return (0);
-} */
-
-void ft_3_sort(t_list **a, t_list **b, t_list **c)
+void ft_3_sort(t_list **a, t_list **b)
 {
 	int first;
 	int second;
@@ -173,21 +150,20 @@ void ft_3_sort(t_list **a, t_list **b, t_list **c)
 
 	biggest = ft_get_max_of_3(a, &first, &second, &bottom);
 	if (biggest == 1)
-		ft_rotate(a, b, c);
+		ft_rotate(a, b);
 	if (biggest == 2 && bottom > first)
 	{
-		ft_swap(a, b, c);
-		ft_rotate(a, b, c);
+		ft_swap(a, b);
+		ft_rotate(a, b);
 	}
 	if (biggest == 2 && bottom < first)
 	{
-		ft_rra(a, b);
-		ft_lstp2back(c, "rra", 4);
-		ft_3_sort(a, b, c);
+		ft_rra(a, b, 1);
+		ft_3_sort(a, b);
 	}
 	ft_get_max_of_3(a, &first, &second, &bottom);
 	if (first > second)
-		ft_swap(a, b, c);
+		ft_swap(a, b);
 }
 
 int ft_chunk_exist_in_a(t_list *a, int chunk, t_sort *n)
@@ -210,16 +186,14 @@ int ft_chunk_exist_in_a(t_list *a, int chunk, t_sort *n)
 		return (0);
 	return (1);
 }
-void ft_push_chunk_to_b(t_list **a, t_list **b, t_list **c, t_sort *n)
+void ft_push_chunk_to_b(t_list **a, t_list **b, t_sort *n)
 {
 	n->n = ft_get_number_of_elements(*a);
 	if (n->meet_f <= n->n - n->meet_l)
 		{
 			while (n->meet_f > 0)
 			{
-				
-				ft_ra(a, b);
-				ft_lstp2back(c, "ra", 3);
+				ft_ra(a, b, 1);
 				n->meet_f--;
 			}
 		}
@@ -227,21 +201,18 @@ void ft_push_chunk_to_b(t_list **a, t_list **b, t_list **c, t_sort *n)
 	{
 		while (n->meet_l < n->n)
 			{
-				ft_rra(a, b);
-				ft_lstp2back(c, "rra", 4);
+				ft_rra(a, b, 1);
 				n->meet_l++;
 			}
 	}
-	ft_pb(a, b);
-	ft_lstp2back(c, "pb", 3);
+	ft_pb(a, b, 1);
 } 
-void ft_1st_pass(t_list **a, t_list **b, t_list **c, t_sort *n)
+void ft_1st_pass(t_list **a, t_list **b, t_sort *n)
 {
 	int chunk;
 
 	(void)a;
 	(void)b;
-	(void)c;
 	(void)n;
 	
 	chunk = 0;
@@ -249,12 +220,12 @@ void ft_1st_pass(t_list **a, t_list **b, t_list **c, t_sort *n)
 	{
 		while(ft_chunk_exist_in_a(*a, chunk, n))
 			{
-				ft_push_chunk_to_b(a, b, c, n);
+				ft_push_chunk_to_b(a, b, n);
 			}
 		chunk++;
 	}
 }
-void ft_2nd_pass(t_list **a, t_list **b, t_list **c, int n)
+void ft_2nd_pass(t_list **a, t_list **b, int n)
 {
 	int pos;
 	int q;
@@ -270,9 +241,7 @@ void ft_2nd_pass(t_list **a, t_list **b, t_list **c, int n)
 		{
 			while (pos > 0)
 			{
-				
-				ft_rb(a, b);
-				ft_lstp2back(c, "rb", 3);
+				ft_rb(a, b, 1);
 				pos--;
 			}
 		}
@@ -280,13 +249,11 @@ void ft_2nd_pass(t_list **a, t_list **b, t_list **c, int n)
 		{
 			while (pos < q)
 			{
-				ft_rrb(a, b);
-				ft_lstp2back(c, "rrb", 4);
+				ft_rrb(a, b, 1);
 				pos++;
 			}
 		}
-			ft_pa(a, b);
-			ft_lstp2back(c, "pa", 3);
+			ft_pa(a, b, 1);
 			n--;
 	 }
 }
@@ -301,6 +268,7 @@ void ft_fill_chunks(t_list **a, t_sort *n)
 	else 
 		n->chunks = 11;
 	in_chunk = n->n / n->chunks;
+	in_chunk = !in_chunk ? 1 : in_chunk;
 	head = *a;
 	while (*a)
 	{
@@ -310,7 +278,7 @@ void ft_fill_chunks(t_list **a, t_sort *n)
 	*a = head;
 }
 
-int ft_generator(t_list **a, t_list **b, t_list **c)
+int ft_generator(t_list **a, t_list **b)
 {
 	int *array;
 	t_sort n;
@@ -321,8 +289,8 @@ int ft_generator(t_list **a, t_list **b, t_list **c)
 	ft_fill_array(*a, &array);
 	ft_fill_index(a, array, n.n);
 	ft_fill_chunks(a, &n);
-	ft_1st_pass(a, b, c, &n);
-	ft_2nd_pass(a, b, c, n.n);
+	ft_1st_pass(a, b, &n);
+	ft_2nd_pass(a, b, n.n);
 	free(array);
 	return (0);
 }
@@ -331,43 +299,28 @@ int main(int argc, char **argv)
 {
 	t_list *a;
 	t_list *b;
-	t_list *c;
-	t_list *head;
-
+	
 	b = 0;
 	a = 0;
-	c = 0;
 	if (argc < 2)
 		return (0);
-	if (ft_read_selm(&a, argc, argv))
+	if (ft_read2a(&a, argc, argv, 1))
 	{
 		a ? ft_lstdel(&a, del) : a;
 		write(2, "Error\n", 6);
 		return (0);
 	}
 	if (!(ft_issort(a, b)))
+	{		
+		a ? ft_lstdel(&a, del) : a;
 		return (0);
-	if (ft_generator(&a, &b, &c))
+	}
+	if (ft_generator(&a, &b))
 	{
+		a ? ft_lstdel(&a, del) : a;
 		write(2, "Error\n", 6);
 		return (0);
 	}
-	head = a;
-	while (a)
-	{
-	//	printf("el = %d, chunk = %d\n", ((t_elm *)(a->content))->number, ((t_elm *)(a->content))->chunk);
-		a = a->next;
-	}
-	a = head;
-	head = c;
-	while (c)
-	{
-		printf("%s\n", (char *)c->content);
-		c = c->next;
-	}
-	c = head;
-	//ft_write_commands(&c);
 	a ? ft_lstdel(&a, del) : a;
 	b ? ft_lstdel(&b, del) : b;
-	c ? ft_lstdel(&c, del) : c;
 }
