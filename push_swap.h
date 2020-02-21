@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:43:41 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/19 12:52:35 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/20 17:59:34 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,18 @@
 typedef struct s_elm
 {
     int number;
-    int order;
+    int chunk; //принадлежность к отрезку
     int index;
 } t_elm;
+
+typedef struct s_sort
+{
+    int meet_f; //будем возвращать -1 если не найдем
+    int chunks; //количество отрезков
+    int meet_l;
+    int dir; //лучшее направление движения 1 - вниз -1 вверх
+    int n;
+} t_sort;
 
 typedef int	(*t_fun)(t_list **, t_list **);
 int			ft_read2a(t_list **a, int n, char **str);
