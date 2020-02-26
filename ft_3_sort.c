@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:30:14 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/26 11:34:05 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/26 13:19:20 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,9 @@ void	ft_swap(t_list **a, t_list **b)
 	int bottom;
 	int smallest;
 
+	first = 0;
+	second = 0;
+	bottom = 0;
 	smallest = ft_get_min_of_3(b, &first, &second, &bottom);
 	if (second > first)
 		ft_ss(a, b, 1);
@@ -89,6 +92,9 @@ void	ft_3_sort(t_list **a, t_list **b)
 	int bottom;
 	int biggest;
 
+	first = 0;
+	second = 0;
+	bottom = 0;
 	biggest = ft_get_max_of_3(a, &first, &second, &bottom);
 	if (biggest == 1)
 		ft_rotate(a, b);
