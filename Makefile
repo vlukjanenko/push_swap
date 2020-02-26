@@ -6,7 +6,7 @@
 #    By: majosue <majosue@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/13 10:14:46 by majosue           #+#    #+#              #
-#    Updated: 2020/02/21 20:51:26 by majosue          ###   ########.fr        #
+#    Updated: 2020/02/26 11:59:37 by majosue          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIBFT = libft/libft.a
 COMPILERC = gcc
 FLAGS = -g -Wall -Wextra -Werror
 SOURCES  = push_swap.c ft_read2a.c ft_cleaners.c ft_read2c.c ft_do_sort.c\
-ft_ra_rrb.c ft_sa_pb.c ft_qsort.c
+ft_ra_rrb.c ft_sa_pb.c ft_qsort.c ft_3_sort.c ft_1st_pass.c ft_2nd_pass.c
 SOURCES2 = checker.c ft_read2a.c ft_cleaners.c ft_read2c.c ft_do_sort.c\
 ft_ra_rrb.c ft_sa_pb.c
 OBJECTS = $(SOURCES:.c=.o)
