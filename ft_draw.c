@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 11:59:43 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/28 16:46:52 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/28 18:14:47 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,19 @@ void	ft_draw_black(t_mlx *mlx)
 int		ft_do_beutifull_sort(t_mlx *mlx)
 {
 	t_fun f;
-
+	ft_draw_black(mlx);
+	ft_draw_stack(mlx->a, mlx, 0);
+	ft_draw_stack(mlx->b, mlx, 1);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
+	mlx_string_put(mlx->mlx_ptr, mlx->win, 150, 10, 0xFFFFFFFF, "Stack - A");
+	mlx_string_put(mlx->mlx_ptr, mlx->win, (WIN_WIDTH + 1) / 2 + 150, 10,\
+	0xFFFFFFFF, "Stack - B");
+	sleep(mlx->delay);
 	if (mlx->c)
 	{
 		f = ft_get_f((mlx->c)->content);
 		f(&(mlx->a), &(mlx->b), 0);
 		mlx->c = (mlx->c)->next;
 	}
-	ft_draw_black(mlx);
-	ft_draw_stack(mlx->a, mlx, 0);
-	ft_draw_stack(mlx->b, mlx, 1);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win, mlx->img.img_ptr, 0, 0);
-	mlx_string_put(mlx->mlx_ptr, mlx->win, 150, 10, 0xFFFFFF, "Stack - A");
-	mlx_string_put(mlx->mlx_ptr, mlx->win, (WIN_WIDTH + 1) / 2 + 150, 10,\
-	0xFFFFFF, "Stack - B");
-	sleep(mlx->delay);
 	return (0);
 }
