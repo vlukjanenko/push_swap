@@ -6,9 +6,20 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/11 15:47:45 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/11 15:53:14 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/28 17:03:04 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
+
+int			ft_rrr(t_list **a, t_list **b, int print)
+{
+	ft_rra(a, b, 0);
+	ft_rrb(a, b, 0);
+	if (print)
+		write(1, "rrr\n", 4);
+	return (0);
+}
 
 static void	ft_swap(int **array, int i, int j)
 {

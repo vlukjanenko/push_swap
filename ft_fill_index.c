@@ -1,55 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_2nd_pass.c                                      :+:      :+:    :+:   */
+/*   ft_fill_index.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/26 11:55:53 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/28 10:46:06 by majosue          ###   ########.fr       */
+/*   Created: 2020/02/28 10:44:39 by majosue           #+#    #+#             */
+/*   Updated: 2020/02/28 10:46:18 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		ft_get_pos(t_list *a, int index)
+void	ft_fill_index(t_list **a, int *array, int n)
+{
+	t_list	*head;
+	int		i;
+
+	head = *a;
+	i = -1;
+	while (++i < n)
+	{
+		while (((t_elm *)(*a)->content)->number != array[i])
+			*a = (*a)->next;
+		((t_elm *)(*a)->content)->index = i;
+		*a = head;
+	}
+}
+
+int		ft_fill_array(t_list *a, int **array)
 {
 	int i;
 
 	i = 0;
 	while (a)
 	{
-		if (((t_elm *)a->content)->index == index)
-			return (i);
-		a = a->next;
+		(*array)[i] = ((t_elm *)a->content)->number;
 		i++;
+		a = a->next;
 	}
+	ft_qsort(array, 0, i - 1);
 	return (0);
 }
 
-void	ft_2nd_pass(t_list **a, t_list **b, int n)
+int		ft_get_number_of_elements(t_list *a)
 {
-	int pos;
-	int q;
+	int i;
 
-	n = ft_get_number_of_elements(*b) - 1;
-	while (n >= 0)
+	i = 0;
+	while (a)
 	{
-		pos = ft_get_pos(*b, n);
-		q = ft_get_number_of_elements(*b);
-		if (pos < q / 2)
-		{
-			pos++;
-			while (--pos > 0)
-				ft_rb(a, b, 1);
-		}
-		else
-		{
-			pos--;
-			while (++pos < q)
-				ft_rrb(a, b, 1);
-		}
-		ft_pa(a, b, 1);
-		n--;
+		i++;
+		a = a->next;
 	}
+	return (i);
 }

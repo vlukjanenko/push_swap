@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 13:05:05 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/21 17:02:44 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/28 11:12:18 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,14 +69,14 @@ int	ft_check(char *str, t_list **a, int for_push_swap)
 	return (1);
 }
 
-int	ft_read2a(t_list **a, int n, char **str, int for_push_swap)
+int	ft_read2a(t_list **a, int n, char **str, t_trigger d)
 {
 	int		i;
 	char	**arr;
 	char	**begin;
 
 	arr = 0;
-	i = 0;
+	i = d.debug;
 	while (++i < n)
 	{
 		if (!(arr = ft_strsplit(str[i], ' ')) ||
@@ -87,7 +87,7 @@ int	ft_read2a(t_list **a, int n, char **str, int for_push_swap)
 		}
 		while (*arr)
 		{
-			if (ft_check(*arr++, a, for_push_swap))
+			if (ft_check(*arr++, a, d.print))
 			{
 				cleanarr(&begin);
 				return (1);

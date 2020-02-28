@@ -6,27 +6,11 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:47:47 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/26 12:08:52 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/28 10:45:55 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ft_fill_index(t_list **a, int *array, int n)
-{
-	t_list	*head;
-	int		i;
-
-	head = *a;
-	i = -1;
-	while (++i < n)
-	{
-		while (((t_elm *)(*a)->content)->number != array[i])
-			*a = (*a)->next;
-		((t_elm *)(*a)->content)->index = i;
-		*a = head;
-	}
-}
 
 void	ft_fill_chunks(t_list **a, t_sort *n)
 {

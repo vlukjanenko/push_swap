@@ -6,22 +6,11 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:42:33 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/26 12:48:07 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/28 11:13:12 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int		ft_issorta(t_list *a)
-{
-	while (a && a->next)
-	{
-		if (((t_elm *)a->content)->index > ((t_elm *)a->next->content)->index)
-			return (1);
-		a = a->next;
-	}
-	return (0);
-}
 
 void	ft_0_pass(t_list **a, t_list **b)
 {
@@ -72,16 +61,24 @@ void	free_stacks(t_list **a, t_list **b)
 	*b ? ft_lstdel(b, del) : *b;
 }
 
+void	ft_init_stacks_debug(t_list **a, t_list **b, t_trigger *d)
+{
+	*a = 0;
+	*b = 0;
+	d->print = 1;
+	d->debug = 0;
+}
+
 int		main(int argc, char **argv)
 {
-	t_list *a;
-	t_list *b;
+	t_list		*a;
+	t_list		*b;
+	t_trigger	d;
 
-	b = 0;
-	a = 0;
+	ft_init_stacks_debug(&a, &b, &d);
 	if (argc < 2)
 		return (0);
-	if (ft_read2a(&a, argc, argv, 1))
+	if (ft_read2a(&a, argc, argv, d))
 	{
 		a ? ft_lstdel(&a, del) : a;
 		write(2, "Error\n", 6);

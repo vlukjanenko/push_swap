@@ -6,20 +6,11 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/07 14:38:15 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/21 13:29:50 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/28 11:03:25 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int		ft_rrr(t_list **a, t_list **b, int print)
-{
-	ft_rra(a, b, 0);
-	ft_rrb(a, b, 0);
-	if (print)
-		write(1, "rrr\n", 4);
-	return (0);
-}
 
 t_fun	ft_get_f(char *str)
 {
@@ -50,8 +41,7 @@ int		ft_do_sort(t_list **a, t_list **b, t_list **c)
 	while (tmp)
 	{
 		f = ft_get_f(tmp->content);
-		if (f(a, b, 0))
-			return (1);
+		f(a, b, 0);
 		tmp = tmp->next;
 	}
 	return (0);
