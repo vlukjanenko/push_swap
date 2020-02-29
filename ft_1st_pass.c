@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:47:47 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/28 10:45:55 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/29 13:12:33 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,81 @@ int		ft_chunk_exist_in_a(t_list *a, int chunk, t_sort *n)
 	return (1);
 }
 
+/* int ft_find_max(t_list *b)
+{
+	int max;
+	
+	max = -1;
+	if (b)
+		max =  ((t_elm*)b->content)->index;
+	while (b)
+	{
+		if (max < ((t_elm*)b->content)->index)
+			max = ((t_elm*)b->content)->index;
+		b = b->next;
+	}
+	return (max);
+}
+ */
+int ft_find_min(t_list *b, int el)
+{
+
+	int min;
+	
+	min = -1;
+	if (b)
+		min =  ((t_elm*)b->content)->index;
+	while (b)
+	{
+		if (min > ((t_elm*)b->content)->index && min > el)
+			min = ((t_elm*)b->content)->index;
+		b = b->next;
+	}
+	return (min);
+}
+
+static void ft_rotate(t_list **a, t_list **b, int el, int steps)
+{
+	int q;
+	int pos;
+	int min = 0;
+	
+	min = ft_find_min(*b, el);
+	pos = ft_get_pos(*b, min);
+	q = ft_get_number_of_elements(*b);
+	if (pos < q / 2 && steps >= pos && *b && min != ((t_elm*)(*b)->content)->index)	
+			ft_rr(a, b, 1);
+		else 
+			ft_ra(a, b, 1);
+}
+
+static void ft_rrotate(t_list **a, t_list **b, int el, int steps)
+{
+	int q;
+	int pos;
+	int min = 0;
+
+	min = ft_find_min(*b, el);
+	pos = ft_get_pos(*b, min);
+	q = ft_get_number_of_elements(*b);
+	if (pos >= q / 2 && steps >= q - pos && *b && min != ((t_elm*)(*b)->content)->index)
+		{	
+				ft_rrr(a, b, 1);
+		}
+		else 
+			ft_rra(a, b, 1);
+}
+int  ft_get_el(t_list *a, int n)
+{
+	int i;
+	i = -1;
+	while (++i < n)
+	{
+		a = a->next;
+	}
+return (((t_elm*)a->content)->index);
+}
+
 void	ft_push_chunk_to_b(t_list **a, t_list **b, t_sort *n)
 {
 	n->n = ft_get_number_of_elements(*a);
@@ -60,15 +135,15 @@ void	ft_push_chunk_to_b(t_list **a, t_list **b, t_sort *n)
 	{
 		while (n->meet_f > 0)
 		{
-			ft_ra(a, b, 1);
+			ft_rotate(a, b, ft_get_el(*a, n->meet_f), n->meet_f);
 			n->meet_f--;
-		}
+		}	
 	}
 	else
 	{
 		while (n->meet_l < n->n)
 		{
-			ft_rra(a, b, 1);
+			ft_rrotate(a, b, ft_get_el(*a, n->meet_f), n->meet_l);
 			n->meet_l++;
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/26 11:55:53 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/28 10:46:06 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/29 16:03:11 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ void	ft_2nd_pass(t_list **a, t_list **b, int n)
 	while (n >= 0)
 	{
 		pos = ft_get_pos(*b, n);
+		//printf("next from top b %d, from bottom - %d\n", pos, n - pos);
+				//------------
+				
 		q = ft_get_number_of_elements(*b);
 		if (pos < q / 2)
 		{
@@ -47,7 +50,9 @@ void	ft_2nd_pass(t_list **a, t_list **b, int n)
 		{
 			pos--;
 			while (++pos < q)
-				ft_rrb(a, b, 1);
+				{
+						ft_rrb(a, b, 1);
+				}
 		}
 		ft_pa(a, b, 1);
 		n--;

@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:43:41 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/28 16:58:13 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/29 13:50:45 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define COL 0
 # define START_COLOUR 0x0000FF
 # define END_COLOUR 0xFE2E2E
+# include <stdio.h> //for debug
 
 typedef struct	s_point
 {

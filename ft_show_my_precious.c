@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/27 14:50:18 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/28 16:43:37 by majosue          ###   ########.fr       */
+/*   Updated: 2020/02/29 11:10:21 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int		ft_mlx_init(t_mlx *mlx, char *name, t_list **c)
 	mlx->bar_h = ((WIN_HEIGHT - COL) / n) < 2 ? 2 :\
 	((WIN_HEIGHT - COL) / n);
 	mlx->scale_w = ((WIN_WIDTH - 1) / 2) / (float)n;
-	if (n < 20)
+	if (n < 50)
 		mlx->delay = 1;
 	else
 		mlx->delay = 0;
