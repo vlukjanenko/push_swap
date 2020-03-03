@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:41:07 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/28 11:23:18 by majosue          ###   ########.fr       */
+/*   Updated: 2020/03/03 11:44:02 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_init_debug_n_stacks(t_list **a, t_list **b, t_list **c, t_trigger *d)
 	*b = 0;
 	*c = 0;
 	if (!(d->arg = ft_strtrim(d->arg)))
-		return (1);
+		exit(1);
 	if (ft_strequ(d->arg, "-v"))
 		d->debug = 1;
 	else
