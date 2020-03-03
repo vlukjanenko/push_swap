@@ -6,7 +6,7 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/28 11:59:43 by majosue           #+#    #+#             */
-/*   Updated: 2020/02/28 18:14:47 by majosue          ###   ########.fr       */
+/*   Updated: 2020/03/03 11:17:30 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	ft_draw_black(t_mlx *mlx)
 int		ft_do_beutifull_sort(t_mlx *mlx)
 {
 	t_fun f;
+
 	ft_draw_black(mlx);
 	ft_draw_stack(mlx->a, mlx, 0);
 	ft_draw_stack(mlx->b, mlx, 1);
