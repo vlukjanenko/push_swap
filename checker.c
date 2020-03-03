@@ -6,17 +6,14 @@
 /*   By: majosue <majosue@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 11:41:07 by majosue           #+#    #+#             */
-/*   Updated: 2020/03/03 11:44:02 by majosue          ###   ########.fr       */
+/*   Updated: 2020/03/03 11:54:12 by majosue          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_checkarg(int n, char **str)
+int	ft_checkarg(int n, char **str, int i)
 {
-	int i;
-
-	i = 0;
 	while (++i < n)
 	{
 		if (ft_strlen(str[i]))
@@ -31,7 +28,10 @@ int	ft_init_debug_n_stacks(t_list **a, t_list **b, t_list **c, t_trigger *d)
 	*b = 0;
 	*c = 0;
 	if (!(d->arg = ft_strtrim(d->arg)))
+	{
+		write(2, "Error\n", 6);
 		exit(1);
+	}
 	if (ft_strequ(d->arg, "-v"))
 		d->debug = 1;
 	else
@@ -48,11 +48,11 @@ int	main(int argc, char **argv)
 	t_list		*c;
 	t_trigger	debug;
 
-	if (argc < 2 || ft_checkarg(argc, argv))
+	if (argc < 2 || ft_checkarg(argc, argv, 0))
 		return (0);
 	debug.arg = argv[1];
 	ft_init_debug_n_stacks(&a, &b, &c, &debug);
-	if (argc == 2 && debug.debug)
+	if ((argc == 2 && debug.debug) || ft_checkarg(argc, argv, debug.debug))
 		return (0);
 	if (ft_read2a(&a, argc, argv, debug) || ft_read2c(&c))
 	{
